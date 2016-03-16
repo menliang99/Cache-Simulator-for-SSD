@@ -1,0 +1,8 @@
+#!/bin/sh
+
+(cd ../..; make clean)
+(cd ../..; make)
+
+
+
+

@@ -1,0 +1,9 @@
+Before add -pthread to the background cleaning.
+No pthread now.
+--This line, and those below, will be ignored--
+
+M    ssdmodel/ssd_timing.c
+M    ssdmodel/ssd_cache.c
+M    ssdmodel/ssd_init.c
+M    ssdmodel/ssd_clean.c
+M    ssdmodel/ssd.c

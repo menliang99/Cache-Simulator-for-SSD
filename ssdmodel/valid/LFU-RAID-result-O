@@ -1,0 +1,31 @@
+
+
+This is the LFU algorithm result with Cache size 2048 and 1 way
+ssd Response time average: 	1.426124
+The total cache write number is 8997788.
+The total Flash write number is 8756955.
+
+This is the LFU algorithm result with Cache size 4096 and 1 way
+ssd Response time average: 	1.105504
+The total cache write number is 8997788.
+The total Flash write number is 8733088.
+
+This is the LFU algorithm result with Cache size 8192 and 1 way
+ssd Response time average: 	0.793109
+The total cache write number is 8997788.
+The total Flash write number is 8728695.
+
+This is the LFU algorithm result with Cache size 16384 and 1 way
+ssd Response time average: 	0.497484
+The total cache write number is 8997788.
+The total Flash write number is 8721370.
+
+This is the LFU algorithm result with Cache size 32768 and 1 way
+ssd Response time average: 	0.436837
+The total cache write number is 8997788.
+The total Flash write number is 8716779.
+
+This is the LFU algorithm result with Cache size 65536 and 1 way
+ssd Response time average: 	0.441440
+The total cache write number is 8997788.
+The total Flash write number is 8714021.

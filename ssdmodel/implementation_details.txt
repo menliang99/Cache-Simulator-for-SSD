@@ -1,0 +1,11 @@
+Least-frequently-used implementation details.
+
+The cache lines have a usage counter associated to them, at every read or write, the counter is incremented by one.
+
+To be able to quickly find the least frequently used line, a red-black tree of double linked list is used to order all the cache lines with a dirty flag by usage frequency.
+
+A red-black tree is a self-balanced binary search tree ensuring that add, deletion and research can be done in O(log(n)). When the counter is updated, we need to determine in which list is the dirty cache line. For that we do a research in the tree using the counter as a key, we get the list in O(log(n)), the cache line is removed from the double linked list, this is a O(1) operation as the cache line as a direct pointer to the element of the list. The cache line, after that is registered at the end of the list corresponding to its new usage counter value.
+
+During the background update process, the cache line are already all ordered, so the tree just need to be walked starting from the lfu node.
+
+

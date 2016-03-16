@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ "x${RUNVALID_PREFIX}" != "x" ];
+then
+PREFIX=${RUNVALID_PREFIX}
+else
+PREFIX=../../src
+fi
+
+(cd ../..; make clean)
+(cd ../..; make)
+
+
+
+echo "Postmark: average SSD response time should be around 4.140330 ms"
+
+
+
+
+
+
+
+time $PREFIX/disksim ssd-cache.parv ssd-postmark.outv ascii ssd-iozone.trace 0
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+#time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv spc Test.spc 0 
+
+
+

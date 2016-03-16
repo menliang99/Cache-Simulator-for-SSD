@@ -1,0 +1,48 @@
+#!/bin/sh
+
+if [ "x${RUNVALID_PREFIX}" != "x" ];
+then
+PREFIX=${RUNVALID_PREFIX}
+else
+PREFIX=../../src
+fi
+
+(cd ../..; make clean)
+(cd ../..; make)
+
+
+
+echo "Postmark: average SSD response time should be around 4.140330 ms"
+
+
+
+#time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv spc Test.spc 0 
+echo "SRC11: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc SRC11.trace 0 
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+echo "SRC10: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc SRC10.trace 0
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+echo "PROJ1: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc PROJ1.trace 0
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+echo "PRN1: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc PRN1.trace 0
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+echo "USR2: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc USR2.trace 0 
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark.outv | grep -v "#"
+
+
+
+
+

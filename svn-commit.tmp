@@ -1,0 +1,10 @@
+This program is used to capture the mapping process of SSD.
+This can continuously to be used to understand how the cleaning process works in SSD.
+Need following work...... 
+--This line, and those below, will be ignored--
+
+M    ssdmodel/ssd_timing.c
+M    ssdmodel/ssd_cache.c
+M    ssdmodel/ssd_init.c
+M    ssdmodel/ssd_clean.c
+M    ssdmodel/ssd.c

@@ -1,0 +1,43 @@
+#!/bin/sh
+
+if [ "x${RUNVALID_PREFIX}" != "x" ];
+then
+PREFIX=${RUNVALID_PREFIX}
+else
+PREFIX=../../src
+fi
+
+(cd ../..; make clean)
+(cd ../..; make)
+
+cat > LFU-RAID-result <<-EOF
+
+EOF
+
+##start running in the  fllowing .....
+
+
+#########################################  IOZONE  #############################################
+
+for i in 2048 4096 8192 16384 32768 65536
+
+do
+  
+cat >> LFU-RAID-result <<-EOF
+
+This is the LFU RAID algorithm result with Cache size $i and 1 way
+EOF
+
+perl -pe "s/.*/Cache size = $i, / if $. == 230" < ssd-cache-1.parv > ssd-cache-1-$i.parv
+
+time $PREFIX/disksim ssd-cache-1-$i.parv ssd-postmark.outv ascii ssd-iozone.trace 0
+
+grep "ssd Response time average:" ssd-postmark.outv | grep -v "#" >> LFU-RAID-result
+grep "The total cache write number is" ssd-postmark.outv | grep -v "#"  >> LFU-RAID-result
+grep "The total Flash write number is" ssd-postmark.outv | grep -v "#"  >> LFU-RAID-result
+
+
+rm -rf ssd-cache-1-$i.parv
+done
+
+

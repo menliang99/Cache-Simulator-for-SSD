@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ "x${RUNVALID_PREFIX}" != "x" ];
+then
+PREFIX=${RUNVALID_PREFIX}
+else
+PREFIX=../../src
+fi
+
+
+#(cd ../..; make clean)
+#(cd ../..; make)
+
+#echo "IOzone: average SSD response time should be around 6.394276 ms"
+#time $PREFIX/disksim ssd-iozone.parv ssd-iozone.outv ascii ssd-iozone-aligned2-100K.trace 0
+#echo run ssd-iozone.parv ssd-iozone.outv ascii ssd-iozone-aligned2-100K.trace 0 
+#gdb $PREFIX/disksim
+#grep "ssd Response time average:" ssd-iozone.outv | grep -v "#"
+#grep "System Total Requests" ssd-iozone.outv | grep -v "#"                      ssd-postmark-aligned_c.trace
+
+echo "Postmark: average SSD response time should be around 4.140330 ms"
+time $PREFIX/disksim ssd-cache.parv ssd-postmark22.outv ascii ssd_test.trace 0
+#../../src/disksim ssd-postmark.parv ssd-postmark.outv ascii ssd-postmark-aligned2.trace 0
+
+#echo "Postmark: average SSD response time should be around 422.40330 ms"
+#time $PREFIX/disksim ssd-postmark.parv ssd-postmark.outv msrc PROJ1.trace 0 
+grep "ssd Response time average:" ssd-postmark22.outv | grep -v "#"
+grep "System Total Requests" ssd-postmark22.outv | grep -v "#"
